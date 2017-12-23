@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.blakekellar.grpcprimes.proto";
+option java_outer_classname = "PrimesProto";
+
+package com.blakekellar.grpcprimes.proto;
+
+service Primes {
+  rpc GetPrimes (PrimesRequest) returns (PrimesReply) {}
+}
+
+message PrimesRequest {
+  int32 numPrimes = 1;
+}
+
+message PrimesReply {
+  repeated int32 primes = 1 [packed=true];
+}
