@@ -1,5 +1,5 @@
 ```
-$ ./gradlew :protobuf:build :protobuf:install #should express this through gradle dependencies
+$ ./gradlew :protobuf:build :protobuf:install
 $ ./gradlew clean build
 $ java -jar server/build/libs/server-0.0.1-SNAPSHOT.jar &
 $ java -jar client/build/libs/client-0.0.1-SNAPSHOT.jar 
