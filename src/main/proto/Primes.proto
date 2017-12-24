@@ -3,6 +3,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.blakekellar.grpcprimes.proto";
 option java_outer_classname = "PrimesProto";
+option java_generic_services = false;
 
 package com.blakekellar.grpcprimes.proto;
 

@@ -9,6 +9,7 @@ sourceCompatibility = 1.8
 buildscript {
     ext {
         kotlinVersion = '1.1.61'
+        grpcVersion = '1.8.0'
     }
     repositories {
         mavenLocal()
@@ -31,13 +32,34 @@ dependencies {
     compile group: 'com.googlecode.protobuf-java-format', name: 'protobuf-java-format', version: '1.4'
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile "io.grpc:grpc-netty:${grpcVersion}"
+    compile "io.grpc:grpc-protobuf:${grpcVersion}"
+    compile "io.grpc:grpc-stub:${grpcVersion}"
 }
 
 protobuf {
     protoc {
         artifact = 'com.google.protobuf:protoc:3.5.0'
     }
-    generatedFilesBaseDir = "$projectDir/src/generated"
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
 }
 
 compileKotlin {
