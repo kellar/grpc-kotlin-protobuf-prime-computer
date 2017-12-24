@@ -3,8 +3,6 @@ package com.blakekellar.grpcprimes
 import com.blakekellar.grpcprimes.proto.PrimesReply
 
 fun main(args: Array<String>) {
-    val server = PrimesServerImpl()
-    server.start()
     val client = PrimesClientImpl()
     val primes : PrimesReply? = client.getPrimes(50)
 
@@ -13,7 +11,6 @@ fun main(args: Array<String>) {
         println("prime[$i] = $it")
         i++
     }
-    
-    server.blockUntilShutdown()
+
 }
 

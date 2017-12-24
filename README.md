@@ -1,7 +1,13 @@
 ```
-./gradlew build -x compileKotlin
-./gradlew build
- java -jar build/libs/grpc-kotlin-protobuf-0.0.1-SNAPSHOT.jar 
+$ cd protobuf/
+protobuf$ ./gradlew clean build install
+protobuf$ cd ../server/
+server$ ./gradlew clean build
+server$ cd ../client/
+client$ ./gradlew clean build
+client$ cd ..
+$ java -jar server/build/libs/server-0.0.1-SNAPSHOT.jar &
+$ java -jar client/build/libs/client-0.0.1-SNAPSHOT.jar 
 prime[0] = 3
 prime[1] = 5
 prime[2] = 7
